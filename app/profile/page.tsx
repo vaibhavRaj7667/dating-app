@@ -3,6 +3,7 @@
 import { getCurrentUserProfile } from "@/lib/actions/profile";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface UserProfile {
   id: string;
@@ -60,23 +61,21 @@ export default function ProfilePage() {
       loadProfile();
    }, []);
 
-   function calculateAge(birthdate: string){
-      const today = new Date();
-      const birthDate = new Date(birthdate);
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const monthDiff = today.getMonth() - birthDate.getMonth();
+    if(loading){
+    return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
+        <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mx-auto">
 
-      if(
-         monthDiff < 0 || (
-            monthDiff === 0 && today.getDate() < birthDate.getDate())
-         ){
-            age--;
-         }
+            </div>
 
-      return age;
-
-   }
-
+            <p className="mt-4 text-gray-600 dark:text-gray-400">
+                Loading profile...
+            </p>
+        </div>
+    </div>
+    );
+  }
 
    if(error || !profile){
       return(
@@ -93,7 +92,18 @@ export default function ProfilePage() {
       )
    }
 
+   function calculateAge(birthdate: string){
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
 
+    if(monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())){
+      age--;
+    }
+
+    return age;
+   }
 
    return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 dark:from-gray-900 dark:to-gray-800">
@@ -114,9 +124,11 @@ export default function ProfilePage() {
                 <div className="flex items-center space-x-6 mb-8">
                   <div className="relative">
                     <div className="w-24 h-24 rounded-full overflow-hidden">
-                      <img
+                      <Image
                         src={profile.avatar_url || "/anime-girl.jpg"}
                         alt={profile.full_name}
+                        width={96}
+                        height={96}
                         className="w-full h-full object-cover"
                       />
                     </div>

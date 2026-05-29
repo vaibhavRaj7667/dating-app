@@ -55,9 +55,13 @@ export default function AuthPage() {
                 });
                  if(error) throw error;
             }
-        } catch (error: any){
-            setError(error.message)
-        } finally{
+          }catch (error) {
+              if (error instanceof Error) {
+                setError(error.message);
+              } else {
+                setError("Something went wrong");
+              }
+            }finally{
             setLoading(false);
         }
     }

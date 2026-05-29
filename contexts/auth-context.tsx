@@ -7,7 +7,6 @@ type AuthContextType = {
   user: User | null;
   loading: boolean;
   signOut: () => Promise<void>;
-
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -66,13 +65,7 @@ async function signOut(){
 export const useAuth = ()=>{
     const context = useContext(AuthContext);
 
-
-    // if(context === undefined){
-    //     throw new Error("useAuth must be used within an AuthProvider");
-    // }
-
-    //Because context will never be undefined here.
-    if(context === null){
+    if(!context){
         throw new Error("useAuth must be used within an AuthProvider");
     }
 
