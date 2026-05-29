@@ -11,7 +11,7 @@ export interface UserProfile {
   username: string;
   email: string;
   gender: "male" | "female" | "other";
-  birthdate: string;
+  birthDate: string;
   bio: string;
   avatar_url: string;
   preferences: UserPreferences;
@@ -125,7 +125,7 @@ export default function ProfilePage() {
                   <div className="relative">
                     <div className="w-24 h-24 rounded-full overflow-hidden">
                       <Image
-                        src={profile.avatar_url || "/anime-girl.jpg"}
+                        src={profile.avatar_url || (profile.gender == 'male' ? "/maleDefaultImage.jpg" : "/femaleDefaultImage.jpg")}
                         alt={profile.full_name}
                         width={96}
                         height={96}
@@ -136,7 +136,7 @@ export default function ProfilePage() {
 
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                      {profile.full_name}, {calculateAge(profile.birthdate)}
+                      {profile.full_name}, {calculateAge(profile.birthDate)}
                     </h2>
                     <p className="text-gray-600 dark:text-gray-400 mb-2">
                       @{profile.username}
@@ -176,7 +176,7 @@ export default function ProfilePage() {
                           Birthday
                         </label>
                         <p className="text-gray-900 dark:text-white">
-                          {new Date(profile.birthdate).toLocaleDateString()}
+                          {new Date(profile.birthDate).toLocaleDateString()}
                         </p>
                       </div>
                     </div>
@@ -262,7 +262,7 @@ export default function ProfilePage() {
                   Account
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
+                  <div className="flex flex-col max-sm:flex-row justify-between p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
                     <span className="text-gray-900 dark:text-white">
                       Username
                     </span>
