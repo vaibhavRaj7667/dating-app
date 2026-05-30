@@ -33,6 +33,20 @@ export interface UserPreferences {
   gender_preference: ("male" | "female" | "other")[];
 }
 
+   export function calculateAge(birthdate: string){
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if(monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())){
+      age--;
+    }
+
+    return age;
+   }
+
+
 
 export default function ProfilePage() {
    const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -92,18 +106,6 @@ export default function ProfilePage() {
       )
    }
 
-   function calculateAge(birthdate: string){
-    const today = new Date();
-    const birthDate = new Date(birthdate);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-
-    if(monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())){
-      age--;
-    }
-
-    return age;
-   }
 
    return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50 dark:from-gray-900 dark:to-gray-800">

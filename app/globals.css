@@ -24,3 +24,52 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .card-swipe {
+    @apply relative overflow-hidden rounded-2xl shadow-lg bg-white dark:bg-gray-800;
+  }
+
+  .match-button {
+    @apply bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-200;
+  }
+
+  .chat-container {
+    @apply bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700;
+  }
+
+  /* Custom scrollbar styles for chat */
+  .chat-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+  }
+
+  .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  .dark .chat-scrollbar {
+    scrollbar-color: #4b5563 transparent;
+  }
+
+  .dark .chat-scrollbar::-webkit-scrollbar-thumb {
+    background: #4b5563;
+  }
+
+  .dark .chat-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+}
