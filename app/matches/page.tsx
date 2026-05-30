@@ -17,7 +17,7 @@ const MatchesPage = () => {
 
   const router = useRouter();
 
-   useEffect(()=>{1
+   useEffect(()=>{
     async function loadUsers(){
       try {
         const potentialMatchesData = await getPotentialMatches();

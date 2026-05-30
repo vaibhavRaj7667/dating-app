@@ -1,7 +1,7 @@
 "use client";
 
 import { calculateAge, UserProfile } from "@/app/profile/page";
-import { getUserMathces } from "@/lib/actions/matches";
+import { getUserMatches } from "@/lib/actions/matches";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -15,9 +15,9 @@ const MatchesListPage = () => {
     useEffect(()=> {
         async function loadMatches(){
             try {
-                const userMatches = await getUserMathces();
+                const userMatches = await getUserMatches();
                 setMatches(userMatches);
-                // console.log(userMatches);
+                console.log(userMatches);
                 
             } catch (error) {
                 setError("Failed to load mathces.")

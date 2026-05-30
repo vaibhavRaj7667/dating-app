@@ -118,7 +118,7 @@ export async function likeUser(toUserId: string){
   return {success: true, isMatch: false};
 }
 
-export async function getUserMathces() {
+export async function getUserMatches() {
   const supabase = createClient(await cookies());
   const {
     data: { user },
