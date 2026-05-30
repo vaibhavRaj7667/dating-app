@@ -2,9 +2,18 @@
 
 import { useAuth } from "@/contexts/auth-context";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 const Navbar = () => {
     const {user, signOut} = useAuth();
+    const router = useRouter();
+
+    function handleButtonClick(){
+        signOut();
+        router.push("/");
+        // console.log("user signed out successfully!");
+    }
   return (
     <nav className="relative z-50 bg-slate-900 border-b border-gray-200/50 dark:border-gray-700/50">
       <div className="container mx-auto px-[2.5vw]">
@@ -37,7 +46,7 @@ const Navbar = () => {
             }
 
             {user ? (
-                    <button onClick={signOut} className="cursor-pointer inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-medium rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-md hover:shadow-lg">
+                    <button onClick={handleButtonClick} className="cursor-pointer inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-medium rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-md hover:shadow-lg">
                         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path
                                 strokeLinecap="round"
