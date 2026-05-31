@@ -1,7 +1,8 @@
 "use client";
 
-import { calculateAge, UserProfile } from "@/app/profile/page";
+import { UserProfile } from "@/app/profile/page";
 import { getUserMatches } from "@/lib/actions/matches";
+import { calculateAge } from "@/lib/helpers/calculate-age";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";

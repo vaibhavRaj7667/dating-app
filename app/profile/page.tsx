@@ -4,6 +4,7 @@ import { getCurrentUserProfile } from "@/lib/actions/profile";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { calculateAge } from "@/lib/helpers/calculate-age";
 
 export interface UserProfile {
   id: string;
@@ -32,21 +33,6 @@ export interface UserPreferences {
   distance: number;
   gender_preference: ("male" | "female" | "other")[];
 }
-
-   export function calculateAge(birthdate: string){
-    const today = new Date();
-    const birthDate = new Date(birthdate);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-
-    if(monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())){
-      age--;
-    }
-
-    return age;
-   }
-
-
 
 export default function ProfilePage() {
    const [profile, setProfile] = useState<UserProfile | null>(null);

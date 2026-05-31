@@ -1,4 +1,5 @@
-import { calculateAge, UserProfile } from "@/app/profile/page";
+import {UserProfile } from "@/app/profile/page";
+import { calculateAge } from "@/lib/helpers/calculate-age";
 import Image from "next/image";
 
 const MatchCard = ({user} : {user: UserProfile}) => {
